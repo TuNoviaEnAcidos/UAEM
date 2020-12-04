@@ -1,0 +1,111 @@
+/*Proyecto Final xD*/
+
+CREATE DATABASE Alternativo;
+
+USE Alternativo;
+
+/*Tabla 1*/
+CREATE TABLE Impuestos(
+ idImpuestos INT PRIMARY KEY AUTO_INCREMENT,
+ Nombre VARCHAR(45),
+ Porcentaje DOUBLE,
+ Tipo VARCHAR(45));
+
+/*Tabla 2*/
+CREATE TABLE Monedas(
+idMonedas INT PRIMARY KEY AUTO_INCREMENT,
+Nombre VARCHAR(45));
+
+/*Tabla 3*/
+CREATE TABLE Sucursales(
+idSucursales INT PRIMARY KEY AUTO_INCREMENT,
+Nombre VARCHAR(45),
+Numero INT);
+
+/*Tabla 4*/
+CREATE TABLE Clientes(
+idClientes INT AUTO_INCREMENT PRIMARY KEY,
+Nombre VARCHAR(45),
+aPaterno VARCHAR(45),
+Codigo INT,
+RazonSocial VARCHAR(45),
+Celular BIGINT,
+Email VARCHAR(45));
+
+/*Tabla 5*/
+CREATE TABLE Rubros(
+idRubros INT AUTO_INCREMENT PRIMARY KEY,
+Nombre VARCHAR(45),
+Rama VARCHAR(45),
+Codigo INT);
+
+/*Tabla 6*/
+CREATE TABLE Marcas(
+idMarcas INT AUTO_INCREMENT PRIMARY KEY,
+Nombre VARCHAR(45));
+
+/*Tabla 7*/
+CREATE TABLE Empleados(
+idEmpleados INT PRIMARY KEY AUTO_INCREMENT,
+idNota INT,
+idBarrio INT,
+idPermiso INT,
+Nombre VARCHAR(45),
+aPaterno VARCHAR(45),
+aMaterno VARCHAR(45),
+Cargo VARCHAR(45),
+TelCasa BIGINT,
+Celular BIGINT,
+Domicilio VARCHAR(45),
+FechaNacimiento DATE,
+FechaContrato DATE);
+
+/*Tabla 8*/
+CREATE TABLE Productos(
+idProductos INT PRIMARY KEY AUTO_INCREMENT,
+idMarcas INT,
+idRubros INT,
+Nombre VARCHAR(45),
+PrecioMenudeo DOUBLE,
+PrecioMayoreo DOUBLE,
+Detalle VARCHAR(45),
+Tipo VARCHAR(45),
+FOREIGN KEY(idMarcas)REFERENCES Marcas(idMarcas) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(idRubros)REFERENCES Rubros(idRubros) ON UPDATE CASCADE ON DELETE CASCADE);
+
+/*Tabla 9*/
+CREATE TABLE FacturasVenta(
+idFacturas INT PRIMARY KEY AUTO_INCREMENT,
+idClientes INT,
+idSucursales INT,
+idEmpleados INT,
+idMonedas INT,
+TipoDocumento VARCHAR(45),
+Estado VARCHAR(45),
+Fecha DATE,
+Descuento DOUBLE,
+FOREIGN KEY (idClientes)REFERENCES Clientes(idClientes) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (idSucursales)REFERENCES Sucursales(idSucursales) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (idEmpleados)REFERENCES Empleados(idEmpleados) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (idMonedas)REFERENCES Monedas(idMonedas) ON UPDATE CASCADE ON DELETE CASCADE);
+
+/*Tabla 10*/
+CREATE TABLE DetallesVentas(
+idDetalleVenta INT PRIMARY KEY AUTO_INCREMENT,
+idProductos INT,
+idFacturas INT,
+Cantidad INT,
+PrecioFactura DOUBLE,
+Total DOUBLE,
+FOREIGN KEY(idProductos)REFERENCES Productos(idProductos) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(idFacturas)REFERENCES FacturasVenta(idFacturas) ON UPDATE CASCADE ON DELETE CASCADE);
+
+/*Tabla 11*/
+ CREATE TABLE DetalleImpuestos(
+idDetalleImpuesto INT PRIMARY KEY AUTO_INCREMENT,
+idFacturas INT,
+idImpuestos INT,
+MontoImpuesto INT,
+Tipo VARCHAR(45),
+FOREIGN KEY (idFacturas)REFERENCES FacturasVenta(idFacturas) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (idImpuestos)REFERENCES Impuestos(idImpuestos) ON UPDATE CASCADE ON DELETE CASCADE);
