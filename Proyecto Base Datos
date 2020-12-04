@@ -1,8 +1,8 @@
-/*Proyecto Final xD*/
+/*Base de Datos Super*/
 
-CREATE DATABASE Alternativo;
+CREATE DATABASE Super;
 
-USE Alternativo;
+USE Super;
 
 /*Tabla 1*/
 CREATE TABLE Impuestos(
