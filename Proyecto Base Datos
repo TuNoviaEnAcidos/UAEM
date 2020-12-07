@@ -1,4 +1,4 @@
-/*Base de Datos Super*/
+/*Proyecto Final xD*/
 
 CREATE DATABASE Super;
 
@@ -109,3 +109,158 @@ MontoImpuesto INT,
 Tipo VARCHAR(45),
 FOREIGN KEY (idFacturas)REFERENCES FacturasVenta(idFacturas) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (idImpuestos)REFERENCES Impuestos(idImpuestos) ON UPDATE CASCADE ON DELETE CASCADE);
+
+/*Actividad 5*/
+
+DESC Impuestos;
+DESC Monedas;
+DESC Sucursales;
+DESC Clientes;
+DESC Rubros;
+DESC Marcas;
+DESC Empleados;
+DESC Productos;
+DESC FacturasVenta;
+DESC DetallesVentas;
+DESC DetalleImpuestos;
+
+/*Añadir Registros 6,7,8,9*/
+
+INSERT INTO Impuestos VALUES
+('1','IVA','16','IVA'),
+('2','ISR','12','ISR'),
+('3','IDE','7','IDE'),
+('4','IETU','11','IETU'),
+('5','Predial','10','ISR'),
+('6','Tenencia','10','ISR'),
+('7','Refrendo','7','ISR'),
+('8','Agua','7','ISR');
+
+INSERT INTO Monedas VALUES
+('1','Peso Mexicano'),
+('2','Nuevos Sol'),
+('3','Bolivar'),
+('4','Dolar'),
+('5','V-Buck'),
+('6','Euro'),
+('7','Yen'),
+('8','Rupias');
+
+INSERT INTO Marcas VALUES
+('1','Productos de Limpieza Domestica "El Terco"'),
+('2','BIMBO'),
+('3','Marinela'),
+('4','Morena'),
+('5','P&G'),
+('6','Arca Continental'),
+('7','FUD'),
+('8','Mattel');
+
+INSERT INTO Sucursales VALUES
+('1','Walmart Oriente','56617'),
+('2','Walmart Plaza Cortijo','12665'),
+('3','Walmart Plaza Patio','45521'),
+('4','Walmart Fuentes de Ortiz','15551'),
+('5','Walmart Sur','45562'),
+('6','Walmart Plaza Militar','55123'),
+('7','Walmart Tezontle','94564'),
+('8','Walmart Orizaba','65212');
+
+INSERT INTO Rubros VALUES
+('1','Centro Comercial','Venta Mayorista','1265'),
+('2','Barberia','Servicios','1236'),
+('3','Cremeria','Venta Mayorista','4585'),
+('4','Salchichoneria','Venta Mayorista','4512'),
+('5','Carniceria','Venta Mayorista','1545'),
+('6','Verduleria','Venta Mayorista','1526'),
+('7','Medicina','Servicios','1298'),
+('8','Jugueteria','Venta Menudeo','1652');
+
+SELECT * FROM Impuestos;
+SELECT * FROM Monedas;
+SELECT * FROM Sucursales;
+SELECT * FROM Marcas;
+SELECT * FROM Rubros;
+
+/*Actividad 10*/
+
+INSERT INTO Empleados VALUES
+('1','212','19','3133','Elias','Gallardo','Oca','Limpieza','5512369854','5516232122','Avenida Solar #11','1995-05-16','2020-01-10'),
+('2','236','65','3462','Juan','Plata','Suazo','Despachador','5523658749','5565315495','Avenida Saturnal #12','1985-06-16','2020-02-09'),
+('3',null,null,null,'Luis','Camacho','Martinez','Administrador',null,null,null,null,'2012-03-20'),
+('4','126','65','4513','Camila','Ortiz','Suarez','Cajero','5565985843','5565123546','Avenida Marcial #24','1965-08-20','2020-04-07'),
+('5','459','45','5297','Jair','Macias','Aguero','Surtidor','5565412369','5595456231','Avenida Lunar #44','1955-09-15','2020-05-06');
+
+SELECT * FROM Empleados;
+
+/*Actividad 11*/
+
+INSERT INTO Clientes VALUES
+('1','Juan','Elias','156232','Farmacia','5545621355','juan@correo.com'),
+('2','Hernesto','Rojas','116932','Cremeria','5541256398','hernesto@correo.com'),
+('3','Luisa','Lopez','137972','Verduleria','5512365478','luisa@correo.com'),
+('4','Rafael','Cancino','136578',null,null,'rafacn@gmail.com'),
+('5','Pedro','Suarez','136432','Salchichoneria','5545561855','pedro@correo.com');
+
+SELECT * FROM Clientes;
+
+/*Actividad 12*/
+
+INSERT INTO Productos VALUES
+('1','1','1','Escoba','34','25.5',null,'Productos de Limpieza'),
+('2','1','1','Mechudo','35','26',null,'Productos de Limpieza'),
+('3','1','1','Atomizador','8','3.5',null,'Productos de Limpieza'),
+('4','1','1','Jergas','13','6.5',null,'Productos de Limpieza'),
+('5','1','1','Lazos','17','9.5',null,'Productos de Limpieza');
+
+SELECT * FROM Productos;
+
+/*Actividad 13*/
+
+SELECT * FROM Productos WHERE PrecioMayoreo>9;
+
+/*Actividad 14*/
+
+SELECT * FROM Productos WHERE PrecioMenudeo<20;
+
+/*Actividad 15*/
+
+INSERT INTO FacturasVenta VALUES
+('1','5','2','5','1',null,'Completado','2020-09-22','10'),
+('2','4','5','4','3',null,'Devuelto','2020-03-15','0'),
+('3','2','3','3','2',null,'Completado','2020-01-13','20'),
+('4','3','4','1','2',null,'Devuelto','2020-01-26','0'),
+('5','1','1','2','1',null,'Completado','2020-02-16','0');
+
+INSERT INTO DetallesVentas VALUES
+('1','3','2','4','24','26'),
+('2','2','3','10','260','275'),
+('3','1','1','20','510','515'),
+('4','5','4','1','6.5','7'),
+('5','4','5','1','17','19');
+
+INSERT INTO DetalleImpuestos VALUES
+('1','5','1','16','IVA'),
+('2','4','1','16','IVA'), 
+('3','3','1','16','IVA'), 
+('4','2','1','16','IVA'), 
+('5','1','1','16','IVA');
+
+SELECT * FROM FacturasVenta;
+SELECT * FROM DetallesVentas;
+SELECT * FROM DetalleImpuestos;
+
+/*Actividad 16*/
+
+UPDATE Clientes SET Codigo='0723169',aPaterno='Camargo' WHERE idClientes=4;
+SELECT * FROM Clientes;
+
+/*Actividad 17*/
+
+UPDATE Empleados SET Nombre='Mario',Cargo='Contador' WHERE idEmpleados=3;
+SELECT * FROM Empleados;
+
+/*Activodad 18*/
+
+DELETE FROM Productos WHERE idProductos=5;
+SELECT * FROM Productos;
